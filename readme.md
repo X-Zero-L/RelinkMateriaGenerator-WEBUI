@@ -4,6 +4,10 @@
 
 碧蓝幻想：Relink（Granblue Fantasy: Relink）的因子生成器。
 
+## 项目截图
+
+![](/screenshot/1.png)
+
 ## 环境要求
 
 - python (version 3.11.x)
