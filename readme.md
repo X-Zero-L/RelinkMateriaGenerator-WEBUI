@@ -38,7 +38,7 @@
 - 打开游戏并载入你的存档，浏览器访问 `http://127.0.0.1:8848/`进行因子生成。
 
 ## 致谢
-核心代码来自于 @nyaoouo 的 [gist代码片段](https://gist.github.com/nyaoouo/c32b8c93e4505eb393b75df2e0ecd23b)。
+核心代码来自于 **[@nyaoouo](https://github.com/nyaoouo)** 的 [gist代码片段](https://gist.github.com/nyaoouo/c32b8c93e4505eb393b75df2e0ecd23b)。
 
 ## 注意
 
