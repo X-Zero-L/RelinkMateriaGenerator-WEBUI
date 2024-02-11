@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>relink因子添加</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/naive-ui"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app" style="height: 100%; width: 100%">
+          <n-config-provider :theme="darkTheme">
+            <n-dialog-provider>
+                <n-message-provider>
+                    <n-layout class="content" style="height: 100%; width: 100%">
+                      <n-layout-header style="margin-bottom: 30px">
+                      </n-layout-header>
+                      <n-flex vertical justify="center" align="center" style="width: 60%; margin: 0 auto">
+                      <n-card title="因子添加" style="padding: 12px; margin-bottom: 12px; text-align: center">
+                        <n-form label-placement="top">
+                          <n-form-item label="因子名(主词条)">
+                            <n-select
+                              v-model:value="materia_name"
+                              :options="materia_options"
+                              clearable
+                            ></n-select>
+                          </n-form-item>
+                          <n-form-item label="副词条">
+                            <n-select
+                              v-model:value="skill_name"
+                              :options="skill_options"
+                              clearable
+                            ></n-select>
+                          </n-form-item>
+                          <n-form-item label="等级"
+                            :rules="[
+                              { required: true, message: '等级不能为空' }
+                            ]"
+                          >
+                            <n-input-number v-model:value="level" :min="1" 
+                            :max="strict? 15: 99"
+                            ></n-input-number>
+                          </n-form-item>
+                          <n-card horizontal>
+                            <n-form-item label="严格模式(只能添加正常游戏可获得的因子,未完成)">
+                              <n-switch v-model:value="strict"
+                              @change="() => {
+                                level = strict? 15: 99
+                                // 修改ready_list中的等级
+                                for (let obj of ready_list) {
+                                  obj.level = level
+                                }
+                              }"
+                              ></n-switch>
+                            </n-form-item>
+                            <n-flex>
+                              <n-form-item>
+                                <n-button type="primary" @click="add_ready_list">添加该因子</n-button>
+                                <n-button type="primary"
+                                @click="add_special_list_to_ready_list"
+                                >添加全部专属+因子(不要自行添加副词条)</n-button>
+                              </n-form-item>
+                            </n-flex>
+                          </n-card>
+                        </n-form>
+                      </n-card>
+                      <n-card title="待添加因子列表" style="padding: 12px; margin-bottom: 12px; text-align: center">
+                        <n-card>
+                          <n-data-table
+                          :data="ready_list"
+                          :columns="columns"
+                          :pagination="pagination"
+                          :bordered="false"
+                        ></n-data-table>
+                        </n-card>
+                        <n-card>
+                          <n-button type="primary" @click="submit_ready_list">添加表格中因子</n-button>
+                          <n-button type="error" @click="() => ready_list = []">清空表格</n-button>
+                        </n-card>
+                      </n-card>
+                    </n-flex>
+                    </n-layout>
+                    <n-back-top :right="80" />
+                </n-message-provider>
+            </n-dialog-provider>
+        </n-config-provider>
+        </div>
+    </body>
+    <script>
+      const App = {
+        setup() {
+          const { ref, h } = Vue
+          const { darkTheme, createDiscreteApi, NButton, NSelect, NInputNumber, useMessage } = naive
+          const { message } = createDiscreteApi(['message'],
+            {
+              configProviderProps: {
+                theme: darkTheme
+              }
+            }
+          )
+          const strict = ref(true)
+          const level = ref(strict.value? 15: 99)
+          const get_materia_options = async () => {
+            return await axios.get('/materials')
+          }
+          const materia_options = ref([])
+          get_materia_options().then(res => {
+            materia_options.value = res.data.map(item => {
+              return {
+                label: item,
+                value: item
+              }
+            })
+          })
+          const materia_name = ref('')
+          const skill_name = ref('')
+          const get_skill_options = async () => {
+            return await axios.get('/skills')
+          }
+          const skill_options = ref([])
+          get_skill_options().then(res => {
+            skill_options.value = res.data.map(item => {
+              return {
+                label: item,
+                value: item
+              }
+            })
+          })
+          const special_list = ref([])
+          const get_special_list = async () => {
+            return await axios.get('/specs')
+          }
+          get_special_list().then(res => {
+            special_list.value = res.data.map(item => {
+              return {
+                name: item,
+                level: strict.value? 15: 99
+              }
+            })
+          })
+          const ready_list = ref([])
+          const delete_ready_list = (row) => {
+            ready_list.value = ready_list.value.filter(item => item !== row)
+          }
+          const add_ready_list = () => {
+            if (!materia_name.value) {
+              message.error('因子名不能为空')
+              return
+            }
+            ready_list.value.push({
+              name: materia_name.value,
+              skill: skill_name.value,
+              level: level.value
+            })
+            console.log(ready_list.value)
+          }
+          const pagination = ref({
+            current: 1,
+            pageSize: 10,
+            total: 100
+          })
+          const columns = [
+            {
+              title: '因子名',
+              key: 'name',
+              // 绘制选择框
+              render: (row) => {
+                return h(NSelect, {
+                  value: row.name,
+                  options: materia_options.value,
+                  clearable: false,
+                  onChange: (value) => {
+                    row.name = value
+                    console.log(row)
+                  }
+                })
+              }
+            },
+            {
+              title: '副词条',
+              key: 'skill',
+              render: (row) => {
+                return h(NSelect, {
+                  value: row.skill,
+                  options: skill_options.value,
+                  clearable: true,
+                  onChange: (value) => {
+                    row.skill = value
+                    console.log(row)
+                  }
+                })
+              }
+            },
+            {
+              title: '等级',
+              key: 'level',
+              render: (row) => {
+                return h(NInputNumber, {
+                  value: row.level,
+                  min: 1,
+                  max: strict.value? 15: 99,
+                  onChange: (value) => {
+                    row.level = value
+                    console.log(row)
+                  }
+                })
+              },
+              width: 120
+            },
+            {
+              title: '操作',
+              key: 'action',
+              render: (row) => {
+                return [
+                h(NButton, {
+                  onClick: () => delete_ready_list(row),
+                  type: 'error'
+                }, '删除'),
+                h(NButton, {
+                  onClick: () => {
+                    // 当前位置后插入一行同样的数据
+                    const index = ready_list.value.indexOf(row)
+                    ready_list.value.splice(index + 1, 0, {
+                      name: row.name,
+                      skill: row.skill,
+                      level: row.level
+                    })
+                  },
+                  type: 'primary'
+                }, '添加')
+                ]
+              }
+            }
+          ]
+          const add_special_list_to_ready_list = () => {
+            ready_list.value = ready_list.value.concat(special_list.value)
+          }
+          const submit_ready_list = () => {
+            axios.post('/add', ready_list.value).then(res => {
+              if (res.data['status'] === 'ok') {
+                message.success('添加成功')
+                ready_list.value = []
+              } else {
+                message.error('添加失败: ' + res.data['message'])
+              }
+            })
+          }
+          return {
+            darkTheme,
+            materia_name,
+            skill_name,
+            level,
+            materia_options,
+            skill_options,
+            special_list,
+            ready_list,
+            pagination,
+            columns,
+            add_ready_list,
+            add_special_list_to_ready_list,
+            strict,
+            submit_ready_list
+          }
+        }
+      }
+      const app = Vue.createApp(App)
+      app.use(naive)
+      app.mount('#app')
+    </script>
+    <style>
+      body {
+        background: black;
+      };
+      html,body,.content {
+        height: 100%;
+        width: 100%;
+      };
+    </style>
+</html>

@@ -1,0 +1,227 @@
+{
+    "躲避性能": {
+        "hex": "e89224a1",
+        "name": "躲避性能",
+        "has_random": true
+    },
+    "追击": {
+        "hex": "035a4ddd",
+        "name": "追击",
+        "has_random": true
+    },
+    "刀上舞": {
+        "hex": "1d409445",
+        "name": "刀上舞",
+        "has_random": true
+    },
+    "属性转换": {
+        "hex": "da9136a1",
+        "name": "属性转换",
+        "has_random": false
+    },
+    "背水": {
+        "hex": "a3021b5e",
+        "name": "背水",
+        "has_random": true
+    },
+    "蓄力攻击": {
+        "hex": "02c67f5e",
+        "name": "蓄力攻击",
+        "has_random": true
+    },
+    "格挡仇火": {
+        "hex": "522c13b8",
+        "name": "格挡仇火",
+        "has_random": true
+    },
+    "暴伤": {
+        "hex": "9d3093ae",
+        "name": "暴伤",
+        "has_random": true
+    },
+    "奋不顾身": {
+        "hex": "f610e3b9",
+        "name": "奋不顾身",
+        "has_random": true
+    },
+    "攻击力": {
+        "hex": "2d7f2e70",
+        "name": "攻击力",
+        "has_random": true
+    },
+    "投掷": {
+        "hex": "b4adddc5",
+        "name": "投掷",
+        "has_random": true
+    },
+    "骰子剑": {
+        "hex": "b1d40170",
+        "name": "骰子剑",
+        "has_random": true
+    },
+    "弱点": {
+        "hex": "bfaa447e",
+        "name": "弱点",
+        "has_random": true
+    },
+    "万能药": {
+        "hex": "6b59242a",
+        "name": "万能药",
+        "has_random": false
+    },
+    "霸体": {
+        "hex": "cb5f29c1",
+        "name": "霸体",
+        "has_random": false
+    },
+    "躲避仇火": {
+        "hex": "a278238e",
+        "name": "躲避仇火",
+        "has_random": true
+    },
+    "快速蓄力": {
+        "hex": "91956b39",
+        "name": "快速蓄力",
+        "has_random": true
+    },
+    "OD特效": {
+        "hex": "3973c1c4",
+        "name": "OD特效",
+        "has_random": true
+    },
+    "连击收招": {
+        "hex": "130508ac",
+        "name": "连击收招",
+        "has_random": true
+    },
+    "摇拽步": {
+        "hex": "0a4651bb",
+        "name": "摇拽步",
+        "has_random": true
+    },
+    "集中炮火": {
+        "hex": "b7c4535a",
+        "name": "集中炮火",
+        "has_random": true
+    },
+    "穷寇心": {
+        "hex": "83e5006e",
+        "name": "穷寇心",
+        "has_random": true
+    },
+    "先发制人": {
+        "hex": "be6b6288",
+        "name": "先发制人",
+        "has_random": true
+    },
+    "身无长技": {
+        "hex": "533d337b",
+        "name": "身无长技",
+        "has_random": true
+    },
+    "躲避距离": {
+        "hex": "49745934",
+        "name": "躲避距离",
+        "has_random": true
+    },
+    "修罗": {
+        "hex": "f1caffa6",
+        "name": "修罗",
+        "has_random": true
+    },
+    "刚健": {
+        "hex": "d4ebb836",
+        "name": "刚健",
+        "has_random": true
+    },
+    "凝神": {
+        "hex": "a4b849a0",
+        "name": "凝神",
+        "has_random": true
+    },
+    "坚持": {
+        "hex": "eda2116a",
+        "name": "坚持",
+        "has_random": true
+    },
+    "守护": {
+        "hex": "9c2399da",
+        "name": "守护",
+        "has_random": true
+    },
+    "能力伤害 ": {
+        "hex": "2a85a4c2",
+        "name": "能力伤害 ",
+        "has_random": true
+    },
+    "格挡性能": {
+        "hex": "b832e7a7",
+        "name": "格挡性能",
+        "has_random": true
+    },
+    "坚守": {
+        "hex": "381bbe64",
+        "name": "坚守",
+        "has_random": true
+    },
+    "破防特效": {
+        "hex": "104cd6ea",
+        "name": "破防特效",
+        "has_random": true
+    },
+    "弱化特效": {
+        "hex": "c37a0842",
+        "name": "弱化特效",
+        "has_random": true
+    },
+    "蓄力会心": {
+        "hex": "8224e6e0",
+        "name": "蓄力会心",
+        "has_random": true
+    },
+    "暴君": {
+        "hex": "a492ffac",
+        "name": "暴君",
+        "has_random": true
+    },
+    "连击加成 ": {
+        "hex": "6a3b2653",
+        "name": "连击加成 ",
+        "has_random": true
+    },
+    "上限": {
+        "hex": "54d8ea04",
+        "name": "上限",
+        "has_random": true
+    },
+    "协同攻击 ": {
+        "hex": "59e5335b",
+        "name": "协同攻击 ",
+        "has_random": true
+    },
+    "抗争": {
+        "hex": "1d3b007a",
+        "name": "抗争",
+        "has_random": true
+    },
+    "热血": {
+        "hex": "e8454459",
+        "name": "热血",
+        "has_random": true
+    },
+    "昏厥": {
+        "hex": "791da8ed",
+        "name": "昏厥",
+        "has_random": true
+    },
+    "暴击率": {
+        "hex": "0bb9c188",
+        "name": "暴击率",
+        "has_random": true
+    },
+    "体力": {
+        "hex": "e92ee838",
+        "name": "体力",
+        "has_random": true
+    }
+}

@@ -1,0 +1,5 @@
+proc.py
+__pycache__/
+nylib/
+data.csv
+test.py
